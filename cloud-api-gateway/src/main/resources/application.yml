@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud: 
+    gateway: 
+      routes:
+        - id: employee-service-auth
+          uri: http://localhost:8083/
+          predicates:
+            - Path=/login/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: account-service
+                fallbackuri: forward:/accountFallBack
+        - id: employee-service-emp
+          uri: http://localhost:8083/
+          predicates:
+            - Path=/employee-management/**
+
+# Discovery Server Access
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    hostname: localhost
+
+server:
+  port: 8989
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000

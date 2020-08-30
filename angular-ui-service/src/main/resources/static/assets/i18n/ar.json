@@ -1,0 +1,9 @@
+{
+    "menu": {
+        "staticcontent.heading": "تطبيق الموظف الزاوي",
+        "staticcontent.home": "الصفحة الرئيسية",
+        "staticcontent.employee": "موظف",
+        "staticcontent.empListing":"قائمة الموظفين",
+        "staticcontent.logout": "تسجيل خروج"
+    }
+}

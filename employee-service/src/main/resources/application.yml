@@ -1,0 +1,31 @@
+### Spring properties
+# Service registers under this name
+spring:
+  application:
+    name: EMPLOYEE-MICROSERVICE
+
+# Discovery Server Access  
+###eureka:
+  ###instance:
+   ### instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+  ###client:
+    ###serviceUrl:
+      ###defaultZone: http://localhost:1111/eureka/ 
+eureka:
+  client: 
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    hostname: localhost  
+        
+
+# HTTP Server (Tomcat) Port
+server: 
+  port: 8083
+
+# Disable Spring Boot's "Whitelabel" default error page, so we can use our own
+error:
+  whitelabel:
+    enabled: false
