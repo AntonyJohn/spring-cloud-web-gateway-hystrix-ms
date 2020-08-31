@@ -2,10 +2,14 @@ spring:
   application:
     name: GATEWAY-SERVICE
   cloud: 
-    gateway: 
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
       routes:
         - id: employee-service-auth
-          uri: http://localhost:8083/
+          uri: lb://EMPLOYEE-MICROSERVICE
           predicates:
             - Path=/login/**
           filters:
@@ -14,9 +18,9 @@ spring:
                 name: account-service
                 fallbackuri: forward:/accountFallBack
         - id: employee-service-emp
-          uri: http://localhost:8083/
+          uri: lb://EMPLOYEE-MICROSERVICE
           predicates:
-            - Path=/employee-management/**
+            - Path=/employee-management/**        
 
 # Discovery Server Access
 eureka:
