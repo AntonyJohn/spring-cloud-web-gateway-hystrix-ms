@@ -48,6 +48,7 @@ public class SpringSecurityJWTConfig extends WebSecurityConfigurerAdapter {
     			.and()
     				.authorizeRequests()
     				.antMatchers("/login/authenticatejwt").permitAll()
+    				.antMatchers("/kafka-producer/email").permitAll()
     				.anyRequest().authenticated().and().exceptionHandling()
     				.authenticationEntryPoint(jwtAuthenticationEntryPoint)
     			.and()

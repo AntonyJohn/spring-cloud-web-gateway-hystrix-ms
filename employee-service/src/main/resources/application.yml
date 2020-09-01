@@ -3,6 +3,11 @@
 spring:
   application:
     name: EMPLOYEE-MICROSERVICE
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: antony
 
 # Discovery Server Access  
 ###eureka:
@@ -23,7 +28,7 @@ eureka:
 
 # HTTP Server (Tomcat) Port
 server: 
-  port: 8083
+  port: 8093
 
 # Disable Spring Boot's "Whitelabel" default error page, so we can use our own
 error:
